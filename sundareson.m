@@ -2,7 +2,7 @@
 close all
 clear
 x = load('Pontos/conjunto2.txt');
-
+p
 x_values = x(:,2);
 y_values = x(:,1);
 size = 10;
@@ -71,3 +71,6 @@ end
 
 step(sys);
 title('Identificação por Sundareson')
+
+
+

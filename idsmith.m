@@ -1,11 +1,11 @@
 %% Smith
 close all
 clear
-x = load('Pontos/conjunto5.txt');
+x = load('Pontos/conjunto1.txt');
 
 x_values = x(:,2);
 y_values = x(:,1);
-size = 10;
+size = 30;
 fitted_values = fit(x_values, y_values, 'poly9');
 plot(fitted_values, x_values, y_values);
 
@@ -17,7 +17,7 @@ for i = 1:size
     y_medium(i) = median(y_values((i-1)* points_per_slice+1:points_per_slice*i));
 end
 
-% adicionar os pontos que faltam
+% OBS adicionar os pontos que faltam
 
 avg_diff = 0;
 stable_portion = numel(y_medium);

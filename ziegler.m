@@ -1,11 +1,11 @@
 %Ziegler Nichols
 close all
 clear
-x = load('Pontos/conjunto4.txt');
+x = load('Pontos/conjunto1.txt');
 
 x_values = x(:,2);
 y_values = x(:,1);
-size = 15; % numero de fatias ao longo da curva
+size = 30; % numero de fatias ao longo da curva
 fitted_values = fit(x_values, y_values, 'poly9');
 plot(fitted_values, x_values, y_values);
 
@@ -42,11 +42,19 @@ for i = 1:stable_portion
     avg_diff
     
 end
+%% medias
+
+for i = 1:29
+    i
+    y_medium(i+1)-y_medium(i)
+end
 
 
-
-
-
+%%
+f1 = diff(y_medium);
+f2 = diff(y_medium);
+inflec_pt = solve(f2,'MaxDegree',1);
+double(inflec_pt)
 
 
 
