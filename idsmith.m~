@@ -70,4 +70,4 @@ else
 end
 
 step(sys);
-title('Identificação por Smith')
+title('Utilizando Smith')

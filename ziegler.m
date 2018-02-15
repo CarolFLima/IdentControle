@@ -1,11 +1,11 @@
 %Ziegler Nichols
 close all
 clear
-x = load('Pontos/conjunto2.txt');
+x = load('Pontos/conjunto4.txt');
 
 x_values = x(:,2);
 y_values = x(:,1);
-size = 15;
+size = 15; % numero de fatias ao longo da curva
 fitted_values = fit(x_values, y_values, 'poly9');
 plot(fitted_values, x_values, y_values);
 
@@ -35,3 +35,28 @@ end
 % checar do inicio ate a regiao estavel por ponto de inflexao
 % caso nao tenha, nao sei o que fazer
 % caso tenha, achar inclinacao a partir dos pontos intermediarios
+avg_diff = 0;
+for i = 1:stable_portion
+    avg_diff = y_medium(i+1)-y_medium(i);
+    i
+    avg_diff
+    
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
