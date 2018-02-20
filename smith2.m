@@ -1,7 +1,7 @@
-%% Mollenkamp
+%% Smith Segunda Ordem
 close all
 clear
-x = load('Pontos/conjunto6.txt');
+x = load('Pontos/conjunto3.txt');
 
 x_values = x(:,2);
 y_values = x(:,1);
@@ -18,8 +18,6 @@ for i = 1:size
     y_medium(i) = median(y_values((i-1)* points_per_slice+1:points_per_slice*i));
 end
 
-% adicionar os pontos que faltam
-
 avg_diff = 0;
 stable_portion = numel(y_medium);
 
@@ -33,9 +31,9 @@ for i = numel(y_medium):-1:2
     end
 end
 
-y1 = 0.15*y_medium(stable_portion);
-y2 = 0.45*y_medium(stable_portion);
-y3 = 0.75*y_medium(stable_portion);
+
+y1 = 0.2*y_medium(stable_portion);
+y2 = 0.6*y_medium(stable_portion);
 
 for i=1:numel(y_values)
     if y1<y_values(i)
@@ -53,44 +51,18 @@ end
 
 t2 = x_values(i);
 
-for i=1:numel(y_values)
-    if y3<y_values(i)
-        break;
-    end
-end
 
-t3 = x_values(i);
+t1/t2 % Razão de checagem do gráfico
 
-
-
-X = (t2 - t1)/(t3 - t1);
-csi = (0.0805 - 5.547*(0.475-X)^2)/(X - 0.356);
-
-
-if csi < 1
-    f2 = (0.708)*((2.811)^csi);
-else
-	f2 = 2.6*csi - 0.60 ;
-    
-end
-
-wn = (f2)/(t3 - t1);
-
-f3 = (0.922)*((1.66)^csi);
-
-theta = t2-(f3/wn);
-
-if csi >= 1
-
-    tau1 = (csi + sqrt((csi^2) - 1))/wn;
-    tau2 = (csi - sqrt((csi^2) - 1))/wn;
-end
+tau = 0.33;
+csi = 0.5;
+tau1 = tau*csi + tau*sqrt(csi*csi -1);
+tau2 = tau*csi - tau*sqrt(csi*csi -1);
 
 hold on
-num = wn^2;
-den = [1 2*csi*wn wn^2];
-
-sys = tf(num, den, 'OutputDelay', theta);
+num = 1;
+den = [tau1*tau2 (tau1+tau2) 1]
+sys = tf(num, den, 'OutputDelay', 0.6);
 step(y_medium(stable_portion)*sys);
-title('Identificação por Mollenkamp');
-legend('Conjunto de dados', 'Modelo identificado', 'Location','southeast');
+xlim([0 7])
+title('Identificação por Smith')

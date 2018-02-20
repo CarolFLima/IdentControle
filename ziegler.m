@@ -10,7 +10,6 @@ size = 15;
 %plot(fitted_values, x_values, y_values);
 plot(x_values, y_values, 'Color', 'k');
 
-
 n = numel(y_values);
 points_per_slice = floor(n/size);
 

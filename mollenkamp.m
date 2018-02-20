@@ -18,8 +18,6 @@ for i = 1:size
     y_medium(i) = median(y_values((i-1)* points_per_slice+1:points_per_slice*i));
 end
 
-% adicionar os pontos que faltam
-
 avg_diff = 0;
 stable_portion = numel(y_medium);
 
