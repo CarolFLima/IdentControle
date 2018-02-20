@@ -1,13 +1,14 @@
 %% Smith
 close all
 clear
-x = load('Pontos/conjunto1.txt');
+x = load('Pontos/conjunto6.txt');
 
 x_values = x(:,2);
 y_values = x(:,1);
 size = 30;
-fitted_values = fit(x_values, y_values, 'poly9');
-plot(fitted_values, x_values, y_values);
+%fitted_values = fit(x_values, y_values, 'poly9');
+%plot(fitted_values, x_values, y_values);
+plot(x_values, y_values, 'Color', 'k');
 
 n = numel(y_values);
 points_per_slice = floor(n/size);
@@ -71,3 +72,4 @@ end
 
 step(sys);
 title('Identificação por Smith')
+legend('Conjunto de dados', 'Modelo identificado', 'Location','southeast');
